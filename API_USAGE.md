@@ -2,21 +2,7 @@
 
 High-performance REST API for filtering exercises with intelligent caching.
 
-## Available Implementations
-
-- **Go** (Recommended for production) - Superior performance and concurrency
-- **Node.js** - Easier deployment and development
-
 ## Setup & Running
-
-### Node.js Setup
-```bash
-npm install
-npm start        # Production
-npm run dev      # Development with auto-reload
-```
-
-Server runs on `http://localhost:3000`
 
 ### Go Setup
 ```bash
@@ -106,6 +92,29 @@ Get available filters and statistics.
 }
 ```
 
+---
+
+### GET /muscle_group
+Get the list of available muscle groups.
+
+**Response:**
+```json
+{
+  "muscle_groups": [
+    "chest",
+    "back",
+    "shoulder",
+    "arm",
+    "abdominals",
+    "human leg",
+    "triceps",
+    "biceps",
+    "hamstring",
+    "lower back"
+  ]
+}
+```
+
 ## Caching Strategy
 
 Both implementations use intelligent caching with:
@@ -124,30 +133,26 @@ Both implementations use intelligent caching with:
 - **Cache Hit**: <1ms response time
 - **Best for**: High-traffic production environments
 
-### Node.js Implementation
-- **Concurrency**: Handles 100s of concurrent requests comfortably
-- **Memory**: ~100-150MB
-- **Latency**: ~5-10ms average response time
-- **Cache Hit**: ~2-5ms response time
-- **Best for**: Development, prototyping, moderate traffic
-
 ## Example curl Requests
 
 ```bash
 # Single muscle group, no equipment
-curl "http://localhost:3000/exercises?muscle_group=chest"
+curl "http://localhost:8080/exercises?muscle_group=chest"
 
 # Multiple muscle groups with equipment
-curl "http://localhost:3000/exercises?muscle_group=chest,back&equipment=barbell"
+curl "http://localhost:8080/exercises?muscle_group=chest,back&equipment=barbell"
 
 # With category filter
-curl "http://localhost:3000/exercises?muscle_group=arm&equipment=dumbbell&category=strength"
+curl "http://localhost:8080/exercises?muscle_group=arm&equipment=dumbbell&category=strength"
+
+# Get available muscle groups
+curl "http://localhost:8080/muscle_group"
 
 # Get available options
-curl "http://localhost:3000/stats"
+curl "http://localhost:8080/stats"
 
 # Health check
-curl "http://localhost:3000/health"
+curl "http://localhost:8080/health"
 ```
 
 ## Error Handling

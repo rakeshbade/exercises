@@ -226,6 +226,13 @@ func GetStatsHandler(c *gin.Context) {
 	})
 }
 
+// GetMuscleGroupsHandler returns the list of muscle groups
+func GetMuscleGroupsHandler(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"muscle_groups": exercisesData.MuscleGroups,
+	})
+}
+
 // HealthCheckHandler for health checks
 func HealthCheckHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
@@ -250,6 +257,7 @@ func main() {
 	// Routes
 	router.GET("/health", HealthCheckHandler)
 	router.GET("/exercises", GetExercisesHandler)
+	router.GET("/muscle_group", GetMuscleGroupsHandler)
 	router.GET("/stats", GetStatsHandler)
 
 	// Get port from environment or use default
