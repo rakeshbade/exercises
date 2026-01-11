@@ -1,0 +1,25 @@
+{
+  "name": "exercises-api",
+  "version": "1.0.0",
+  "description": "High-performance exercises API with caching",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js",
+    "dev": "nodemon api.js"
+  },
+  "keywords": [
+    "exercises",
+    "api",
+    "caching",
+    "filtering"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
