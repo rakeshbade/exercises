@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -251,8 +252,15 @@ func main() {
 	router.GET("/exercises", GetExercisesHandler)
 	router.GET("/stats", GetStatsHandler)
 
-	log.Println("Starting server on :8080")
-	if err := router.Run(":8080"); err != nil {
+	// Get port from environment or use default
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	addr := ":" + port
+	log.Printf("Starting server on %s", addr)
+	if err := router.Run(addr); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
 }
